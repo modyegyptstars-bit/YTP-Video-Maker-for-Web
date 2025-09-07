@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YTP Video Maker for Web — Beta</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>YTP Video Maker for Web</h1>
+    <p class="tagline">A beta scaffold: GitHub Pages front-end to assemble randomized/controlled YouTube Poop style effects and drive ffmpeg for quick previews.</p>
+  </header>
+
+  <main class="container">
+    <section id="about">
+      <h2>About</h2>
+      <p>This project is a simple web interface that lets you configure randomized and controlled visual/audio effects commonly used in YouTube Poop (YTP) videos. The frontend generates a configuration which is consumed by a local or remote runner that executes ffmpeg to produce low-res previews quickly.</p>
+    </section>
+
+    <section id="features">
+      <h2>Key features (sample)</h2>
+      <ul>
+        <li>Invert — color inversion</li>
+        <li>Rainbow Overlay — overlay PNG/GIF (user-provided)</li>
+        <li>Mirror — horizontal flip</li>
+        <li>Sus — clip followed by reversed copy</li>
+        <li>Stutter Loop — duplicate clip 2–4 times</li>
+        <li>Loop Frames — short frame-precise loop (2–9 frames)</li>
+        <li>Shuffle Frames — randomly scramble frames</li>
+        <li>Reverse Clip (video & audio)</li>
+        <li>Speed Up / Slow Down</li>
+        <li>Chorus Effect (approx via aecho)</li>
+        <li>Vibrato / Pitch Bend (asetrate + atempo approximation)</li>
+        <li>Earrape Mode — large gain</li>
+        <li>Meme Injection — overlay image / audio</li>
+        <li>Per-effect toggles, probability, and max levels via config.json</li>
+        <li>Quick low-res preview generation for fast iteration</li>
+      </ul>
+    </section>
+
+    <section id="how-it-works">
+      <h2>How it works</h2>
+      <ol>
+        <li>The static GitHub Pages UI lets you edit controls and produces a JSON configuration (config.json).</li>
+        <li>A runner (local script or server) reads config.json and applies an effect pipeline using ffmpeg, producing a low-res preview for fast iteration.</li>
+        <li>The preview is opened in the browser or saved as preview.mp4 for review. For higher-quality final renders, run with higher resolution and different ffmpeg flags.</li>
+      </ol>
+      <p>Note: GitHub Pages cannot run ffmpeg by itself. Use the included bash script locally or run an exposed server that runs ffmpeg on your machine or a hosted instance.</p>
+    </section>
+
+    <section id="quick-start">
+      <h2>Quick start (local)</h2>
+      <ol>
+        <li>Clone this repo to your machine.</li>
+        <li>Install ffmpeg and jq (jq is used to parse JSON in the sample script).</li>
+        <li>Edit the provided <code>config.sample.json</code> and rename to <code>config.json</code> (or generate via the UI).</li>
+        <li>Run the preview generator:
+          <pre class="command">bash generate-preview.sh input.mp4 config.json preview.mp4</pre>
+        </li>
+        <li>Open <code>preview.mp4</code> in your browser or player.</li>
+      </ol>
+    </section>
+
+    <section id="config">
+      <h2>Config schema (overview)</h2>
+      <p>See <code>config.sample.json</code> for a full example. Key fields:</p>
+      <ul>
+        <li><code>effects.*.enabled</code>: boolean to enable effect</li>
+        <li><code>effects.*.probability</code>: 0.0–1.0 chance to apply</li>
+        <li><code>effects.*.level</code>: 0–100 control for intensity</li>
+        <li><code>global.preview_scale</code>: scale factor for quick low-res previews</li>
+      </ul>
+    </section>
+
+    <section id="examples">
+      <h2>Example usage patterns</h2>
+      <p>Use low-res previews for quick iteration (e.g., scale=0.25). When satisfied, switch to final render settings (higher resolution, higher bitrate, optionally multi-pass).</p>
+    </section>
+
+    <section id="contributing">
+      <h2>Contributing & extending</h2>
+      <p>Contributions are welcome: add new effects, refine existing approximations (e.g., better vibrato/pitch manipulations), improve the UI, or add a proper server-side runner (Node/Express, Flask) for remote processing.</p>
+    </section>
+
+    <footer class="site-footer">
+      <p>Repository: <a href="https://github.com/modyegyptstars-bit/WandraikSpiderOS">modyegyptstars-bit/WandraikSpiderOS</a></p>
+      <p>License: MIT</p>
+    </footer>
+  </main>
+
+  <script>
+    // Minimal interactivity: attempt to open preview (preview.mp4) if present.
+    // If you serve the site locally, this will open preview.mp4 in a new tab.
+    function openPreview() {
+      const previewUrl = 'preview.mp4';
+      fetch(previewUrl, { method: 'HEAD' })
+        .then(res => {
+          if (res.ok) window.open(previewUrl, '_blank');
+          else alert('preview.mp4 not found. Run generate-preview.sh to create it.');
+        })
+        .catch(() => alert('Unable to check preview. Make sure the site is served from a server.'));
+    }
+
+    // Add small "Open preview" button if keyboard pressed "p"
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'p') openPreview();
+    });
+  </script>
+</body>
+</html>

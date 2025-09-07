@@ -1,0 +1,32 @@
+/* Minimal styles for YTP Video Maker landing page */
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
+  color: #111;
+  background: #f7f7fb;
+}
+
+.site-header {
+  background: linear-gradient(90deg, #1f1f2b, #3b2b5a);
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.site-header h1 { margin: 0; font-size: 1.8rem; }
+.tagline { opacity: 0.95; margin-top: .5rem; }
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(39,39,69,0.08);
+}
+
+.container section { padding: 1.25rem 1.5rem; border-bottom: 1px solid #eef0f6; }
+.container h2 { margin-top: 0; color: #2d2d3a; }
+.command { background: #0f1724; color: #d6f8ff; padding: .6rem; display: inline-block; border-radius: 6px; }
+
+.site-footer { padding: 1rem 1.5rem; font-size: .9rem; color: #666; text-align: center; }

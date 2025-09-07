@@ -1,0 +1,78 @@
+{
+  "global": {
+    "preview_scale": 0.3,
+    "preview_fps": 15,
+    "seed": 12345
+  },
+  "effects": {
+    "invert": {
+      "enabled": true,
+      "probability": 0.5,
+      "level": 1
+    },
+    "rainbow_overlay": {
+      "enabled": true,
+      "probability": 0.25,
+      "overlay_path": "overlays/rainbow.png",
+      "opacity": 0.6,
+      "max_scale": 1.3
+    },
+    "mirror": {
+      "enabled": true,
+      "probability": 0.33
+    },
+    "sus": {
+      "enabled": true,
+      "probability": 0.2,
+      "clip_seconds": 0.6
+    },
+    "stutter_loop": {
+      "enabled": true,
+      "probability": 0.4,
+      "min_repeats": 2,
+      "max_repeats": 4
+    },
+    "loop_frames": {
+      "enabled": true,
+      "probability": 0.25,
+      "min_frames": 2,
+      "max_frames": 9
+    },
+    "shuffle_frames": {
+      "enabled": true,
+      "probability": 0.15
+    },
+    "reverse": {
+      "enabled": true,
+      "probability": 0.1
+    },
+    "speed": {
+      "enabled": true,
+      "probability": 0.4,
+      "min_factor": 0.5,
+      "max_factor": 2.0
+    },
+    "chorus": {
+      "enabled": true,
+      "probability": 0.2,
+      "params": "0.8:0.9:55:0.4:0.25:2"
+    },
+    "vibrato": {
+      "enabled": true,
+      "probability": 0.12,
+      "amount": 0.08
+    },
+    "earrape": {
+      "enabled": false,
+      "probability": 0.05,
+      "gain_db": 12
+    },
+    "meme_injection": {
+      "enabled": true,
+      "probability": 0.18,
+      "image_path": "overlays/meme.png",
+      "audio_path": "overlays/meme.wav",
+      "position": "top=10:left=10"
+    }
+  }
+}
