@@ -1,4 +1,3 @@
-```markdown
 # YTP Video Maker for Web (Beta)
 
 A GitHub Pages front-end scaffold for assembling YouTube Poop (YTP) style effects, producing quick ffmpeg-driven previews.
